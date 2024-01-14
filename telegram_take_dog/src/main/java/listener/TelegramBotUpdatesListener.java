@@ -30,19 +30,9 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             logger.info("Processing update: {}", update);
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
-        }
-
     }
 
+}
 
 
-//Long chatId = update.message().chat().id();
-//            if (update.message().text().equals("/start")) {
-//                SendMessage message = new SendMessage(chatId, "07.01.2024 20:00 Сделать домашнюю работу");
-//                telegramBot.execute(message);
-//
-//            }
-//
-//
-//            return UpdatesListener.CONFIRMED_UPDATES_ALL;
 
