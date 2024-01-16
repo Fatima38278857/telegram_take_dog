@@ -49,7 +49,6 @@ if exist "%USERPROFILE%\mavenrc_pre.bat" call "%USERPROFILE%\mavenrc_pre.bat" %*
 if exist "%USERPROFILE%\mavenrc_pre.cmd" call "%USERPROFILE%\mavenrc_pre.cmd" %*
 :skipRcPre
 
-
 @setlocal
 
 set ERROR_CODE=0
