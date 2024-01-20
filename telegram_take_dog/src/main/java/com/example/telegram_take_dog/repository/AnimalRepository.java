@@ -1,6 +1,6 @@
-package repository;
+package com.example.telegram_take_dog.repository;
 
-import model.Animal;
+import com.example.telegram_take_dog.model.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
