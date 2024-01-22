@@ -26,8 +26,6 @@ public class TelegramBotConfiguration { // Класс отвечает за  И�
     public TelegramBotConfiguration(String botName, String token) {
         this.token = token;
     }
-
-
     public String getToken() {
         return token;
     }

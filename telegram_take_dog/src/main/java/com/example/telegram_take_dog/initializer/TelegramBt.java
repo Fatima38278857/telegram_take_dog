@@ -15,6 +15,7 @@ import static com.example.telegram_take_dog.enumm.Command.*;
 @Component
 public class TelegramBt extends TelegramLongPollingBot {
 
+
     final TelegramBotConfiguration configuration;
 
     public TelegramBt(TelegramBotConfiguration configuration) {
