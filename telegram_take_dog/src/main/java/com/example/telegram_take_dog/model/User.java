@@ -1,4 +1,6 @@
 package com.example.telegram_take_dog.model;
 
-public class User {
+public class User { // Пользователь
+
+
 }
