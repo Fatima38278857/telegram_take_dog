@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-public class NotificationTask {
+public class  NotificationTask {
     @Id
     @GeneratedValue
     private Long id = 0L;

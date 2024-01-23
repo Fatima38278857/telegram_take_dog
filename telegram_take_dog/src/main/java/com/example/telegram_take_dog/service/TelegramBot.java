@@ -1,7 +1,6 @@
-package com.example.telegram_take_dog.initializer;
+package com.example.telegram_take_dog.service;
 
 import com.example.telegram_take_dog.configuration.TelegramBotConfiguration;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
@@ -13,14 +12,16 @@ import static com.example.telegram_take_dog.enumm.Command.*;
 
 
 @Component
-public class TelegramBt extends TelegramLongPollingBot {
+public class TelegramBot extends TelegramLongPollingBot {
 
 
     final TelegramBotConfiguration configuration;
 
-    public TelegramBt(TelegramBotConfiguration configuration) {
+    public TelegramBot(TelegramBotConfiguration configuration) {
         this.configuration = configuration;
     }
+
+
 
     /**
      * Метод возвращает token бота для связи с сервером Telegram
@@ -57,8 +58,8 @@ public class TelegramBt extends TelegramLongPollingBot {
         }
     }
 
-    public void startCommandReceived(long chatId, String text) {
-        String answer = String.valueOf(GREETINGS_MESSAGE);
+    public void startCommandReceived(long chatId, String name) {
+        String answer = "Hi, " + name +", nice to meet you!";
         sendMessage(chatId, answer);
     }
 
@@ -71,11 +72,6 @@ public class TelegramBt extends TelegramLongPollingBot {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
         message.setText(textToSend);
-
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-        }
     }
 }
 

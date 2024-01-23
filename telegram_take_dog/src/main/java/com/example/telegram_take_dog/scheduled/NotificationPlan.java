@@ -15,9 +15,9 @@ public class NotificationPlan {
     }
 
 
-    @Scheduled(fixedDelay = 60000)
-    public void sendNotification() {
-        notificationService.notification();
-    }
+//    @Scheduled(fixedDelay = 60000)
+//    public void sendNotification() {
+//        notificationService.notification();
+//    }
 }
 
