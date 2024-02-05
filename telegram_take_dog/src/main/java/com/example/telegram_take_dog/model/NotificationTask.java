@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "notification_task")
 public class  NotificationTask {
     @Id
     @GeneratedValue

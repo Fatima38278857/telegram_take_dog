@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("trialPeriod")
-public class TrialPeriodController { // Испытательный срок
+@RequestMapping("photoAnima")
+//@Tag(name = "API для работы с записями об усыновлении")
+public class PhotoAnimalController {
 }
