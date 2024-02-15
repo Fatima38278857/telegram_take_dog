@@ -1,18 +1,20 @@
 package com.example.telegram_take_dog.model;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
+
 import java.util.Arrays;
 import java.util.Objects;
-
+/**
+ * Класс
+ */
 @Entity(name = "photo_animal")
 public class PhotoAnimal {
 
-    @Id
+   @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String filePath; // В нем будем хранить путь до файла на вашем диске.
+    private String filePath; // В нем будем хранить путь до файла на  диске.
     private long fileSize; // Это поле содержит информацию о размере файла в байтах.
     private String mediaType; // Тип файла.
     @Lob

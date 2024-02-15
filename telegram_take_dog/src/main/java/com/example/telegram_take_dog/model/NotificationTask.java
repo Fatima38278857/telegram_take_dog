@@ -1,17 +1,18 @@
 package com.example.telegram_take_dog.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
-
+/**
+ *
+ */
 @Entity(name = "notification_task")
 public class  NotificationTask {
     @Id
-    @GeneratedValue
-    private Long id = 0L;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "chat_id")
     private Long chatId;
     @Column(name = "content_notification")

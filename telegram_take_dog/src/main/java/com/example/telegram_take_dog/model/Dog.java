@@ -1,51 +1,66 @@
 package com.example.telegram_take_dog.model;
 
-import javax.persistence.Entity;
+
+
+import jakarta.persistence.Entity;
+
 import java.util.Objects;
 
+/**
+ *  Клас наследник Animal
+ *
+ */
 @Entity
 public class Dog extends Animal{
 
-    private final Long id;
-    private String name;
-    private boolean animalWithDisability;
+    private int age; // Возрост
+    private String breed; // Порода
 
-    public Dog(Long id, String name, boolean animalWithDisability) {
-        this.id = id;
-        this.name = name;
-        this.animalWithDisability = animalWithDisability;
+    public Dog(Long id, String name, boolean animalWithDisability, int old, String breed) {
+        super(id, name, animalWithDisability);
+        this.age = old;
+        this.breed = breed;
     }
 
-    public Long getId() {
-        return id;
+    public Dog() {
+
     }
 
-    public String getName() {
-        return name;
+    public int getAge() {
+        return age;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public boolean isAnimalWithDisability() {
-        return animalWithDisability;
+    public String getBreed() {
+        return breed;
     }
 
-    public void setAnimalWithDisability(boolean animalWithDisability) {
-        this.animalWithDisability = animalWithDisability;
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Dog dog = (Dog) o;
-        return animalWithDisability == dog.animalWithDisability && Objects.equals(id, dog.id) && Objects.equals(name, dog.name);
+        return age == dog.age && Objects.equals(breed, dog.breed);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, animalWithDisability);
+        return Objects.hash(super.hashCode(), age, breed);
+    }
+
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "old=" + age +
+                ", breed='" + breed + '\'' +
+                '}';
     }
 }

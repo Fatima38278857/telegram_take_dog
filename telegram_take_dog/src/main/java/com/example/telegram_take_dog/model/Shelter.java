@@ -2,12 +2,16 @@ package com.example.telegram_take_dog.model;
 
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+import java.util.Objects;
+/**
+ * Класс с данными о приюте
+ */
 @Entity(name = "shelter")
 public class Shelter { // Приют
     @Id

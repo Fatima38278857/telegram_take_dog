@@ -13,7 +13,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 
 @Configuration
-@ComponentScan(basePackages = "com.example.telegram_take_dog.repository")
+//@ComponentScan(basePackages = "com.example.telegram_take_dog.repository")
 public class TelegramBotConfiguration {
 
 

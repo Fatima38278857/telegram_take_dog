@@ -1,15 +1,21 @@
 package com.example.telegram_take_dog.model;
 
-import javax.persistence.Entity;
+
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
-
+/**
+ * Класс родитель
+ */
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Animal {
-
-    private Long id;
-    private String name;
-    private boolean animalWithDisability;
+   @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id; // Идентификатор
+    private String name; // Имя
+    private boolean animalWithDisability; // Животное с инволидностью
 
     public Animal(Long id, String name, boolean animalWithDisability) {
         this.id = id;
