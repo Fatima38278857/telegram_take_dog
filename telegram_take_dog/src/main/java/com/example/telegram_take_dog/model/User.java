@@ -17,6 +17,9 @@ public class User { // Пользователь
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id_user")
+    private Long id;
+    @Column(name = "chatId")
     private Long chatId;
     @Column(name = "name")
     private String name;
@@ -24,29 +27,34 @@ public class User { // Пользователь
     private String lastName;
     @Column(name = "firstName")
     private String firstName;
-    @Column(name = "phone")
-    private Long phone;
-    @Column(name = "passport")
-    private Long passport;
+
     @Column(name = "registeredAt")
     private Timestamp registeredAt;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StatusUser status;
 
-    public User(Long chatId, String name, String lastName, String firstName, Long phone, Long passport, Timestamp registeredAt, StatusUser status) {
+    public User(Long id, Long chatId, String name, String lastName, String firstName, Timestamp registeredAt, StatusUser status) {
+        this.id = id;
         this.chatId = chatId;
         this.name = name;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.phone = phone;
-        this.passport = passport;
         this.registeredAt = registeredAt;
         this.status = status;
     }
 
     public User() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getChatId() {
@@ -81,22 +89,6 @@ public class User { // Пользователь
         this.firstName = firstName;
     }
 
-    public Long getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Long phone) {
-        this.phone = phone;
-    }
-
-    public Long getPassport() {
-        return passport;
-    }
-
-    public void setPassport(Long passport) {
-        this.passport = passport;
-    }
-
     public Timestamp getRegisteredAt() {
         return registeredAt;
     }
@@ -104,6 +96,7 @@ public class User { // Пользователь
     public void setRegisteredAt(Timestamp registeredAt) {
         this.registeredAt = registeredAt;
     }
+
 
     public StatusUser getStatus() {
         return status;
@@ -118,23 +111,22 @@ public class User { // Пользователь
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(chatId, user.chatId) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(firstName, user.firstName) && Objects.equals(phone, user.phone) && Objects.equals(passport, user.passport) && Objects.equals(registeredAt, user.registeredAt) && status == user.status;
+        return Objects.equals(id, user.id) && Objects.equals(chatId, user.chatId) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(firstName, user.firstName) && Objects.equals(registeredAt, user.registeredAt)  && status == user.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(chatId, name, lastName, firstName, phone, passport, registeredAt, status);
+        return Objects.hash(id, chatId, name, lastName, firstName, registeredAt, status);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "chatId=" + chatId +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", phone=" + phone +
-                ", passport=" + passport +
+                "id=" + id +
+                ", chatId=" + chatId +
+                ", Имя ='" + name + '\'' +
+                ", Фамилия ='" + lastName + '\'' +
+                ", Отчество ='" + firstName + '\'' +
                 ", registeredAt=" + registeredAt +
                 ", status=" + status +
                 '}';

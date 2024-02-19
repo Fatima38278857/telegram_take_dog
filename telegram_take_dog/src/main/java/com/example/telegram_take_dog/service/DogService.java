@@ -45,20 +45,4 @@ public class DogService {
 
     }
 
-    /**
-     *
-     * @param dog
-     * @return
-     */
-    public Dog update(Dog dog) {
-        return dogRepository.save(dog);
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public void delete(long id) {
-        dogRepository.deleteById(id);
-    }
 }

@@ -20,7 +20,6 @@ import java.time.temporal.ChronoUnit;
  */
 public class NotificationService { // Уведомление
 
-//    private UserRepository userRepository;
 //
 //
 //    private final NotificationTaskRepository notificationTaskRepository;

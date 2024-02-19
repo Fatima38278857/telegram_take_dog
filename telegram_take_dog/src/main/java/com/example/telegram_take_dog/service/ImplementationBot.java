@@ -1,6 +1,7 @@
 package com.example.telegram_take_dog.service;
 
 import com.example.telegram_take_dog.enumm.StatusUser;
+import com.example.telegram_take_dog.exception.NullNotFoundException;
 import com.example.telegram_take_dog.model.User;
 import com.example.telegram_take_dog.model.UserInfo;
 import com.example.telegram_take_dog.repository.UserInRepository;
@@ -26,9 +27,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.telegram_take_dog.enumm.Command.*;
+
 /**
  *
  */
@@ -37,14 +38,13 @@ import static com.example.telegram_take_dog.enumm.Command.*;
 public class ImplementationBot extends TelegramLongPollingBot {
     @Autowired
     UserRepository userRepository;
-//    @Autowired
-//    UserInRepository userInRepository;
+    @Autowired
+    UserInRepository userInRepository;
 
     private boolean stub = false;
     private final Logger logger = LoggerFactory.getLogger(ImplementationBot.class);
     @Value("${bot.name}")
     private String nameBot;
-
 
 
     public ImplementationBot(@Value("${bot.token}") String botToken) {
@@ -63,6 +63,7 @@ public class ImplementationBot extends TelegramLongPollingBot {
         }
     }
 
+
     /**
      * Метод для приема сообщений.
      *
@@ -73,18 +74,28 @@ public class ImplementationBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
-            if (stub){
-               update.getMessage().getContact().getPhoneNumber();
-               update.getMessage().getContact().getFirstName();
-               update.getMessage().getContact().getLastName();
-                String[] strings = messageText.split("");
-//                UserInfo userInfo = new UserInfo();
-//                userInRepository.save(userInfo);
-//                stub = false;
-//                Optional<User> user = userRepository.findById(chatId);
-//                user.get().setStatus(StatusUser.PROBATION);
-//                userRepository.save();
+
+            if (stub) {
+                stub = false;
+                // name, surName, phon, passport
+//                if (!messageText.matches("\\w+, \\w+, \\d+, \\w+(\\.)?")) {
+//                    throw new RuntimeException("dvfkgdkfgerg");
+//
+//                }
+                String[] strings = messageText.split(", ");
+                UserInfo userInfo = new UserInfo();
+                userInfo.setName(strings[0]);
+                userInfo.setSurName(strings[1]);
+                userInfo.setPhone(Long.parseLong(strings[2]));
+                userInfo.setPassport(strings[3]);
+                userInRepository.save(userInfo);
+                User user = userRepository.findById(chatId).orElseThrow(NullNotFoundException::new);
+                user.setStatus(StatusUser.PROBATION);
+                userRepository.save(user);
+                sendMessage(chatId, REPORT_NOTICE.getMessageText());
+                return;
             }
+// TODO Запрос на смену статуса в Repository
 
             switch (messageText) {
                 case "/start":
@@ -104,14 +115,15 @@ public class ImplementationBot extends TelegramLongPollingBot {
                     commandRefusal(chatId, REFUSAL.getMessageText());
                     break;
                 case "/adopt_dog":
-//                    stub = true;
-//                    sendMessage(chatId, "Данные внесены");
+                    stub = true;
+                    sendMessage(chatId, DATA_IN_FORMAT.getMessageText());
                     break;
                 default:
                     sendMessage(chatId, "Sorry, command was not recognized");
             }
         }
     }
+
 
     /**
      * Метод для определения, зарегестрирован ли пользователь
@@ -140,8 +152,6 @@ public class ImplementationBot extends TelegramLongPollingBot {
     }
 
 
-
-
     /**
      * @param chatId
      * @param text
@@ -150,6 +160,7 @@ public class ImplementationBot extends TelegramLongPollingBot {
         String infoRefusal = String.valueOf(REFUSAL.getMessageText());
         sendMessage(chatId, infoRefusal);
     }
+
     /**
      * @param chatId
      * @param text
@@ -178,7 +189,7 @@ public class ImplementationBot extends TelegramLongPollingBot {
         sendMessage(chatId, answer);
     }
 
-    private void commandRecommend(long chatId, String text){
+    private void commandRecommend(long chatId, String text) {
         String recommend = String.valueOf(RECMMEND.getMessageText());
         sendMessage(chatId, recommend);
     }

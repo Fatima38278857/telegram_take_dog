@@ -4,4 +4,7 @@ package com.example.telegram_take_dog.service;
  * испытательного срока для усыновителя
  */
 public class TrialPeriodService { // Испытательный срок
+
+
+
 }
